@@ -28,9 +28,8 @@ const LoginForm = () => {
                 }}
                 validationSchema={validationSchema}
                 
-                onSubmit={(values, action) => {
+                onSubmit={(values) => {
                     dispatch(logIn(values)).unwrap().then(response => response.data).catch(error => alert("'Please, check your password or login because no such user was found'"));
-                    action.resetForm();
                 }}>
         <Form>
         <FormField>

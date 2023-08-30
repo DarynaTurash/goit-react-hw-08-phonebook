@@ -9,7 +9,6 @@ const validationSchema = Yup.object().shape({
     name: Yup.string()
         .required('Name is required'),
     email: Yup.string()
-        .email('Invalid email address')
         .required('Email is required'),
     password: Yup.string()
         .min(7, 'Password should contain minimum 7 symbols')
@@ -29,8 +28,8 @@ const RegisterForm = () => {
                 }}
                 validationSchema={validationSchema}
                 
-                onSubmit={(values, action) => {
-                    dispatch(register(values));
+                onSubmit={(values) => {
+                    dispatch(register(values)).unwrap().then(response => response.data).catch(error => alert("The user with this login is already registered"));
                 }}>
         <Form>
         <FormField>

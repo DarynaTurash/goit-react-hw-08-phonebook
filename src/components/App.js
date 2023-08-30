@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useAuth } from "redux/hooks/useAuth";
 import { useEffect, lazy } from "react";
 import { refreshUser } from "redux/auth/operations";
+import { Navigate } from "react-router-dom";
 
 
 const Home = lazy(() => import('../pages/Home'));
@@ -41,7 +42,8 @@ return isRefreshing ? (
             element={
             <PrivateRoute redirectTo="/login" component={<Contacts />} />
             } />
-        </Route> 
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} /> 
     </Routes>
     );
 }
